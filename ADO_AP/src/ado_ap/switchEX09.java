@@ -20,10 +20,9 @@ public class switchEX09 {
         int d9;
         int d10;
         int d11;
-        int soma;
-        int resto;
-        int subtracao;
-        int digito;
+        int soma, soma2;
+        int resto, resto2;
+        int passe;
  // Recebe os vaores das váriáveis
         System.out.println("Digite um a um os números do seu CPF");
         System.out.println("Digite o 1º digito: ");
@@ -51,17 +50,36 @@ public class switchEX09 {
         entrada.close();
 // incia operação de soma e multiplicação
         soma = d1*10+d2*9+d3*8+d4*7+d5*6+d6*5+d7*4+d8*3+d9*2;
-        resto = soma % 11;
-        subtracao = 11 - resto;
-        if (resto ==10 || resto == 11){
-            digito = 0;
+        resto = (soma * 10) % 11;
+                
+        if (resto == d10){
+            passe = 1;
         }
-        else{
-            digito = resto;
+        else if (resto == 10){
+            passe = 1;
+        }
+        else if(d1==d2&&d2==d3&&d3==d4&&d4==d5&&d5==d6&&d6==d7&&d7==d8&&d8==d9&&d9==d10&&d10==d11){
+        	passe = 0;	
+        }
+        else {
+        	passe = 0;
         }
         
-        
-        
+        soma2 = d1*11+d2*10+d3*9+d4*8+d5*7+d6*6+d7*5+d8*4+d9*3+d10*2;
+    	resto2 = (soma2 * 10) %  11;
+    	
+        switch (passe) {
+        case 1:
+        	if(resto2 == d11) {
+        		System.out.println("CPF "+d1+d2+d3+"."+d4+d5+d6+"."+d7+d8+d9+"-"+d10+d11+" É Válido");
+        	}
+        	else {
+        		System.out.println("CPF "+d1+d2+d3+"."+d4+d5+d6+"."+d7+d8+d9+"-"+d10+d11+ " É Inválido: Para ser válido deveria ser: "+d1+d2+d3+"."+d4+d5+d6+"."+d7+d8+d9+"-"+resto+resto2);
+        	}
+        	break;
+        default:
+        	System.out.println("CPF "+d1+d2+d3+"."+d4+d5+d6+"."+d7+d8+d9+"-"+d10+d11+ " Inválido: Para ser válido deveria ser: "+d1+d2+d3+"."+d4+d5+d6+"."+d7+d8+d9+"-"+resto+(resto2+1));
+        }
         
         
     }
